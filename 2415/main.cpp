@@ -1,56 +1,67 @@
 #include <iostream>
 #include <string>
- 
+#include <vector>
+
 using namespace std;
- 
-int pointsMarked(string str){
 
-    string aux, num;
-    int maxPoints = 0, points = 1;
+int ptsMarked(vector<int> v)
+{
 
-    for (int i = 0; i < str.length(); i++){
+    int pts = 0, mxPts = 0, lastMatch, t = 0, i = 0;
 
-        if(str[i] != ' ' && i != str.length() - 1)
+    while (t < v.size())
+    {
 
-            aux.push_back(str[i]);
+        while (t < v.size())
+        {
+            if (v.at(i) == v.at(t))
+            {
+                pts++;
 
-       else{
-
-            if(num.empty())
-                num = aux;
-            
-            if(aux.compare(num) == 0)
-                points++;
-            else{
-                points = 1;
-                num = aux;
+                if (pts > mxPts)
+                    mxPts = pts;
+                
+                t++;
             }
-            
-            if(points > maxPoints)
-                maxPoints = points;
-
-            if(i != str.length() - 2)
-                aux.erase();
+            else{
+                pts = 0;
+                i = t;
+                break;
+            }
         }
         
     }
 
-    return maxPoints;
+    return mxPts;
 }
 
+vector<int> readData(vector<int> v)
+{
 
-int main() {
- 
-    
-    string str;
-    int points;
+    int n, buffer;
 
-    cout << "Digite os valores sorteados: ";
-    getline(cin, str);
+    cin >> n;
 
-    points = pointsMarked(str);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> buffer;
+        v.push_back(buffer);
+    }
 
-    cout << points;
+    return v;
+}
+
+int main()
+{
+
+    vector<int> values;
+    int pts;
+
+    values = readData(values);
+
+    pts = ptsMarked(values);
+
+    cout << pts << endl;
 
     return 0;
 }
