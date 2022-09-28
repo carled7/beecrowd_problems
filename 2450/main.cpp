@@ -2,18 +2,6 @@
 
 using namespace std;
 
-void printM(int *mtx[], int n, int m)
-{
-    for (int l = 0; l < n; l++)
-    {
-        for (int c = 0; c < m; c++)
-        {
-            cout << mtx[l][c] << " [" << l << "][" << c << "] ";
-        }
-        cout << endl;
-    }
-}
-
 int main()
 {
 
